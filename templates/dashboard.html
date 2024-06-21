@@ -1,0 +1,48 @@
+{% extends 'base.html %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+    
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <div class="metrics">
+        <div class="metric">
+            <h3>Total Products</h3>
+            <p>{{ total_products }}</p>
+        </div>
+        <div class="metric">
+            <h3>Total Orders</h3>
+            <p>{{ total_orders }}</p>
+        </div>
+        <div class="metric">
+            <h3>Total Sales</h3>
+            <p>${{ total_sales or 0 }}</p>
+        </div>
+        <div class="metric">
+            <h3>Total Users</h3>
+            <p>{{ total_users }}</p>
+        </div>
+    </div>
+    <h2>Recent Orders</h2>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+        {% for order in recent_orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>${{ order.total_price }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('add_product') }}">Add New Product</a>
+    
+{% endblock %}
