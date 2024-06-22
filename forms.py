@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DecimalField, IntegerField, SelectField, DateField, BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
-from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from wtforms_alchemy.fields import QuerySelectField
 from models import Category, User
 
 # User Registration Form

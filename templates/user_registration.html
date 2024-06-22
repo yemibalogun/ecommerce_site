@@ -28,40 +28,15 @@
 
       <div class="row">
         <div class="col">
-          {{ staff_register_form.firstname(class="form-control", placeholder="first name") }} {% if staff_register_form.firstname.errors %}
+          {{ staff_register_form.username(class="form-control", placeholder="username") }} {% if staff_register_form.username.errors %}
           <ul class="errors">
-            {% for error in staff_register_form.firstname.errors %}
+            {% for error in staff_register_form.username.errors %}
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
           {% endif %}
           <br />
         </div>
-
-        <div class="col">
-            {{ staff_register_form.middlename(class="form-control",
-            placeholder="middle name") }} {% if staff_register_form.middlename.errors
-            %}
-            <ul class="errors">
-              {% for error in staff_register_form.middlename.errors %}
-              <li>{{ error }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-            <br />
-          </div>
-
-        <div class="col">
-          {{ staff_register_form.lastname(class="form-control", placeholder="last name") }} {% if staff_register_form.lastname.errors %}
-          <ul class="errors">
-            {% for error in staff_register_form.lastname.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          <br />
-        </div>
-
       </div>
 
     <div class="row">
@@ -97,100 +72,6 @@
         {% endif %}
         <br />
       </div>
-    </div>
-
-      
-    <div class="row">
-      <div class="col">
-        {{ staff_register_form.address(class="form-control", placeholder="address") }} {% if staff_register_form.address.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.address.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <br />
-      </div>
-
-      <div class="col">
-        {{ staff_register_form.phone(class="form-control", placeholder="phone number") }} {% if staff_register_form.phone.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.phone.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <br />
-      </div>
-    </div> 
-    
-    <div class="row">
-      <div class="col">
-        {{ staff_register_form.gender.label(class="form-label") }} <br>
-        {% for subfield in staff_register_form.gender %} {{ subfield }} {{
-        subfield.label }}
-        <br />
-        {% endfor %}
-        <br>
-      </div>
-
-      <div class="col">
-        {{ staff_register_form.role.label(class="form-label") }} <br>
-        {{ staff_register_form.role(class="form-control", placeholder="role") }} 
-        {% if staff_register_form.role.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.role.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-
-      
-
-      <div class="col">
-        {{ staff_register_form.appointment.label(class="form-label") }} <br>
-        {{ staff_register_form.appointment(class="form-control", placeholder="appointment") }} {% if staff_register_form.appointment.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.appointment.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-    </div>
-
-    <div class="row">
-      
-
-      
-    </div>
-
-    <div class="row">
-      <div class="col">
-        {{ staff_register_form.date_of_birth.label(class="form-label") }} {{
-        staff_register_form.date_of_birth(class="form-control", placeholder="Date of Birth", type='date') }} {% if staff_register_form.date_of_birth.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.date_of_birth.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <br />
-      </div>
-      <div class="col">
-        {{ staff_register_form.date_tos.label(class="form-label") }} {{
-        staff_register_form.date_tos(class="form-control", placeholder="Date taken on strenght",
-        type='date') }} {% if staff_register_form.date_tos.errors %}
-        <ul class="errors">
-          {% for error in staff_register_form.date_tos.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <br />
-      </div>
-      
     </div>
 
     <br />
