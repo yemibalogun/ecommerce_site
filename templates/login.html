@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% extends 'base.html' %} {% block title %} login {% endblock %} {% block
+content %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="
+    background-image: url('https://images.unsplash.com/photo-1601370690183-1c7796ecec61?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    opacity: 80%;
+  "
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div style="color: #fff" class="page-heading">
+          <h1>Login</h1>
+          <span class="subheading"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<br />
+
+<div class="container">
+  <div
+    style="width: 400px; margin: auto; padding: 1em; border-radius: 5%"
+    class="form-container"
+  >
+    <div style="margin: auto" class="row">
+      <h4 style="color: rgb(0, 68, 171); text-align: center">Welcome</h4>
+      <br />
+      <br />
+      <div style="font-size: small; text-align: center">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+          <div
+            style="text-align: center; margin: 0; padding: 1rem"
+            class="alert alert-{{ category }} alert-dismissible fade show"
+            role="alert"
+          >
+            <li>{{ message }}</li>
+          </div>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+      </div>
+
+      <form
+        style="text-align: center; padding: 1em"
+        method="POST"
+        action="{{ url_for('login') }}"
+      >
+        <input
+        type="hidden"
+        name="status"
+        value="active"
+      />
+        {{ login_form.csrf_token() }}
+
+        <div>
+          {{ login_form.email(class="form-control input-sm",
+          placeholder="email") }} {% if login_form.email.errors %}
+          <ul class="errors">
+            {% for error in login_form.email.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <br />
+        </div>
+
+        <div>
+          {{ login_form.password(class="form-control input-sm",
+          placeholder="password") }} {% if login_form.password.errors %}
+          <ul class="errors">
+            {% for error in login_form.password.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <br />
+        </div>
+
+        <div class="form-group">
+          {{ login_form.submit( class="btn btn-primary") }}
+        </div>
+        <br />
+      </form>
+      <div class="div">
+        <p style="font-size: small">
+          Not registered yet?
+          <span
+            ><a style="font-size: small" href="{{ url_for('register_user')}}">
+              Register here</a
+            ></span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
