@@ -76,48 +76,42 @@ body, html {
 }
 
 section {
-    margin-top: 30px auto;
+    margin-top: 50px;
 }
 
 .carousel-container {
-    width: 90%;
-    margin: 40px;
+    width: calc(14rem * 4); /* Width to show 4 images */
     overflow: hidden;
-  }
+    margin: 0 auto; /* Center the carousel */
+}
   
-  .carousel {
+.carousel-inner {
     display: flex;
-    margin: 50px;
-    transition: transform 0.5s ease;
+    flex-wrap: nowrap;
+}
+  
+.carousel-item {
+    flex: 0 0 14rem; /* Each item takes 14rem width */
   }
   
-  .customize-carousel {
+.carousel-item img {
+    width: 100%;
+    margin: 0;
+    height: auto;
+}
+  
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Adjust as needed */
+}
+  
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black; /* Adjust as needed */
+    padding: 10px; /* Adjust as needed */
+}  
 
-  }
-  .slide {
-    margin: 20px;
-    flex: 0 0 20%; /* Adjust the width as per your design */
-    transition: .3s;
-  }
-
-  .slide:hover {
-    margin: 20px;
-    flex: 0 0 20%; /* Adjust the width as per your design */
-    width: 16rem;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    transition: .3s;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  .carousel-img {
-    max-width: 14rem;
-  }
-
-  .card-body {
+.card-body {
     margin: 20px auto;
     font-size: small;
     text-align: center;

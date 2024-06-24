@@ -43,46 +43,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"
     
 </script>
 
-<script>
-   $(document).ready(function() {
-  const carousel = $(".carousel");
-  const slides = $(".slide");
-
-  let currentIndex = 0;
-
-  function moveCarousel() {
-    const slideWidth = slides.eq(0).outerWidth();
-    const offset = -1 * slideWidth * currentIndex;
-    carousel.css("transform", `translateX(${offset}px)`);
-  }
-
-  // Call moveCarousel initially
-  moveCarousel();
-
-  // Function to handle moving to the next set of slides
-  function next() {
-    currentIndex++;
-    if (currentIndex >= slides.length) {
-      currentIndex = 0;
-    }
-    moveCarousel();
-  }
-
-  // Interval to automatically move to the next set of slides
-  const interval = setInterval(next, 3000); // Change 3000 to desired interval in milliseconds
-
-  // Optionally, you can pause the carousel on hover
-  $(".carousel-container").hover(
-    function() {
-      clearInterval(interval);
-    },
-    function() {
-      interval = setInterval(next, 3000);
-    }
-  );
-});
-
-</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
