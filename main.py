@@ -118,7 +118,8 @@ def admin_dashboard():
                            total_orders=total_orders,
                            total_sales=total_sales,
                            total_users=total_users,
-                           recent_orders=recent_orders)
+                           recent_orders=recent_orders
+                           )
 
 @app.route('/admin/add_product', methods=['GET', 'POST'])
 @login_required
@@ -219,6 +220,11 @@ def new_ticket():
         return redirect(url_for('account'))
     return render_template('create_ticket.html', title='New Support Ticket', support_ticket_form=support_ticket_form, legend='New Support Ticket')
 
+@app.routje("/", methods=['GET', 'POST'])
+@login_required
+def shop_collection():
+    products = Product.query.all()
+    return render_template("shop.html", products=products)
 
 if __name__=='__main__':
     with app.app_context():

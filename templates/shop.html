@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Shop collection 
+{% endblock %}
+
+{% block content %}
+<div class="card-container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ product.product_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">product.category</p>
+                    <h5 class="card-title">product.name</h5>
+                    <p class="card-text">product.price</p>  
+                </div>
+            </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    
+    </div>
+</div>
+{% endblock %}
