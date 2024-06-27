@@ -6,6 +6,22 @@ Home
 
 {% block content %}
 <section>
+  <div style="font-size: small; text-align: center">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+      <div
+        style="text-align: center; margin: 0; padding: 1rem"
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+      >
+        <li>{{ message }}</li>
+      </div>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+  </div>
     <div class="hero-section">
         <div class="col">
             <div class="product-info">
@@ -19,7 +35,7 @@ Home
                 <img src="/static/images/blue-nobg.png" alt="Handcrafted Leather Bag">
             </div>
         </div>
-        <a class="customize-button" href="#">Shop collection</a>
+        <a class="customize-button" href="{{ url_for('shop_collection')}}">Shop collection</a>
     </div>
 </section>
 

@@ -4,14 +4,14 @@ from flask_bcrypt import Bcrypt
 from config import Config
 from werkzeug.utils import secure_filename
 from PIL import Image
-from models import db, Product, User, Category, Order, Review, Address, SupportTicket
+from models import db, Product, User, Category, Order, Review, Address, SupportTicket, Contact
 from sqlalchemy.orm import joinedload, Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import or_, func, event, distinct
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
-from forms import ProductForm, LoginForm, RegistrationForm, ReviewForm, AddressForm, SupportTicketForm
+from forms import ProductForm, LoginForm, RegistrationForm, ReviewForm, AddressForm, SupportTicketForm, ContactForm
 from datetime import datetime
 import os
 import secrets
@@ -220,13 +220,34 @@ def new_ticket():
         return redirect(url_for('account'))
     return render_template('create_ticket.html', title='New Support Ticket', support_ticket_form=support_ticket_form, legend='New Support Ticket')
 
-@app.routje("/", methods=['GET', 'POST'])
-@login_required
+@app.route("/shop_collection", methods=['GET', 'POST'])
 def shop_collection():
     products = Product.query.all()
     return render_template("shop.html", products=products)
+
+@app.route("/about")
+def about_us():
+    return render_template('about.html')
+
+@app.route('/contact_us', methods=['GET', 'POST'])
+def contact_us():
+    contact_form = ContactForm()
+    if contact_form.validate_on_submit():
+        contact = Contact(
+            first_name=contact_form.first_name.data, 
+            last_name=contact_form.last_name.data, 
+            email=contact_form.email.data, 
+            message=contact_form.message.data
+            )
+        db.session.add(contact)
+        db.session.commit()
+        flash('Your message has been submitted successfully!', 'success')
+        return redirect(url_for('index'))
+
+    return render_template('contact.html', contact_form=contact_form)
 
 if __name__=='__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True) 
+

@@ -116,4 +116,13 @@ section {
     font-size: small;
     text-align: center;
   }
+
+.form-container {
+    width: 400px; 
+    background-color: rgb(201, 255, 237); 
+    margin: auto; 
+    padding: 1em; 
+    border-radius: 5%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
   

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DecimalField, IntegerField, SelectField, DateField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DecimalField, IntegerField, SelectField, DateField, BooleanField, EmailField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
 from wtforms_alchemy.fields import QuerySelectField
 from models import Category, User
@@ -53,3 +53,10 @@ class SupportTicketForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()])
     priority = SelectField('Priority', choices=[('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], validators=[DataRequired()])
     submit = SubmitField('Submit Ticket')
+
+class ContactForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    email = EmailField('Last Name', validators=[DataRequired()])
+    message = TextAreaField('Message', validators=[DataRequired()])
+    submit = SubmitField('Send Message')

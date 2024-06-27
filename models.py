@@ -128,3 +128,11 @@ class InventoryRecord(db.Model):
     reorder_level = db.Column(db.Integer, nullable=False)
     supplier_name = db.Column(db.String(100))
     restock_date = db.Column(db.DateTime)
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
