@@ -59,7 +59,7 @@ def login():
             if new_status not in ['active', 'inactive']:
                 flash('Invalid status.', 'warning')
                 return redirect(url_for('login'))
-        
+            
             user.status = new_status
             db.session.commit()
             login_user(user)
@@ -70,7 +70,7 @@ def login():
             if next_page:
                 return redirect(next_page)
             else:
-                return redirect(url_for('home'))
+                return redirect(url_for('shop_collection'))
                 
     return render_template("login.html", login_form=login_form)
 
@@ -175,7 +175,11 @@ def register():
         user = User(
             username=register_form.username.data, 
             email=register_form.email.data, 
-            password_hash=hashed_password
+            password=hashed_password,
+            fullname=register_form.fullname.data, 
+            phone=register_form.phone.data, 
+            date_of_birth=register_form.date_of_birth.data, 
+            gender=register_form.gender.data, 
             )
         db.session.add(user)
         db.session.commit()

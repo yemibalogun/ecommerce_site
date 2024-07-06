@@ -1,18 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from datetime import datetime, timezone
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    full_name = db.Column(db.String(150))
-    phone_number = db.Column(db.String(20))
+    password = db.Column(db.String(128), nullable=False)
+    fullname = db.Column(db.String(150))
+    phone = db.Column(db.String(20))
     date_of_birth = db.Column(db.Date)
     gender = db.Column(db.String(10))
-    is_admin = db.Column(db.Boolean, default=False)
+    active = db.Column(db.Boolean, default=False)
+    status = db.Column(db.String, default='inactive')
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     
     addresses = db.relationship('Address', backref='user', lazy=True)
@@ -20,6 +22,21 @@ class User(db.Model):
     reviews = db.relationship('Review', backref='user', lazy=True)
     cart = db.relationship('Cart', backref='user', uselist=False)
     support_tickets = db.relationship('SupportTicket', backref='user', lazy=True)
+
+    @property
+    def is_active(self):
+        return self.active
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return str(self.id)
     
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)

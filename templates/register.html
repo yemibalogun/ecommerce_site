@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% extends "base.html" %} {% block content %}
+
+<div
+  style="height: 1100px"
+  class="container-fluid text-center"
+>
+  <!-- <button class="btn btn-primary" id="openExcelBtn">Add Excel</button> -->
+
+  <div
+    class="row form-container"
+    style="text-align: left; width: 90%; padding: 20px; margin: auto"
+  >
+    <h4 style="color: rgb(0, 68, 171); text-align: center">Staff Registration Form</h4>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+      <div style="text-align: center; margin: 0; padding: 1rem;" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <li>{{ message }}</li>
+      </div>  
+      {% endfor %}
+    </ul>
+    {% endif %} 
+    {% endwith %}
+    <form method="POST" action="{{ url_for('register') }}">
+      {{ register_form.csrf_token() }}
+
+      <div class="row">
+        <div class="col">
+          {{ register_form.username(class="form-control", placeholder="username") }} {% if register_form.username.errors %}
+          <ul class="errors">
+            {% for error in register_form.username.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <br />
+        </div>
+
+        <div class="col">
+          {{ register_form.fullname(class="form-control", placeholder="fullname") }} {% if register_form.fullname.errors %}
+          <ul class="errors">
+            {% for error in register_form.fullname.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <br />
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col">
+        {{ register_form.email(class="form-control", placeholder="email") }} {% if register_form.email.errors %}
+        <ul class="errors">
+          {% for error in register_form.email.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+
+      <div class="col">
+        {{ register_form.phone(class="form-control", placeholder="phone") }} {% if register_form.phone.errors %}
+        <ul class="errors">
+          {% for error in register_form.phone.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        
+        {{ register_form.date_of_birth(class="form-control", placeholder="date of birth") }} {% if register_form.date_of_birth.errors %}
+        <ul class="errors">
+          {% for error in register_form.date_of_birth.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+
+      <div class="col">
+        {{ register_form.gender(class="form-control", placeholder="gender") }} {% if register_form.gender.errors %}
+        <ul class="errors">
+          {% for error in register_form.gender.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+      
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {{ register_form.password(class="form-control", placeholder="password") }} {% if register_form.password.errors %}
+        <ul class="errors">
+          {% for error in register_form.password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+      
+      <div class="col">
+        {{ register_form.confirm_password(class="form-control", placeholder="confirm password") }} {% if register_form.confirm_password.errors %}
+        <ul class="errors">
+          {% for error in register_form.confirm_password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <br />
+      </div>
+
+    </div>
+
+    <br />
+    <div class="form-group" style="text-align: center">
+      {{ register_form.submit( class="btn btn-primary") }}
+    </div>
+    </div>
+        
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

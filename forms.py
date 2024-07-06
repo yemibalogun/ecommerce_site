@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DecimalField, IntegerField, SelectField, DateField, BooleanField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, DecimalField, IntegerField, SelectField, DateField, BooleanField, EmailField, TelField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
 from wtforms_alchemy.fields import QuerySelectField
 from models import Category, User
@@ -10,6 +10,11 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    fullname = StringField('Fullname', validators=[DataRequired()])
+    phone = TelField('Phone', validators=[DataRequired()])
+    date_of_birth = DateField('Date of birth', validators=[DataRequired()])
+    gender = SelectField('Gender', choices=[('male', 'Male'), ('female', 'Female')], validators=[DataRequired()])
+    
     submit = SubmitField('Sign Up')
 
 # User Login Form
